@@ -1,21 +1,32 @@
-import couchdb
+import pycouchdb as couchdb
 import uuid
 import pandas as pd
 
 couch = couchdb.Server('http://MDS:supersecure@localhost:5984/')
 
-db = couch["songs"]
+db = couch.database("songs")
 
-doc = {
-    "_id": "3ef7b250-8893-4380-871d-8615892822b6",
-    "name": "John Doe",
-    "age": 25,
-    "email": "john@doe.com"
-}
+df = pd.read_csv("data/metal.csv", sep=",")
+df = df.drop(columns=["DetectedLanguage", "Certainty"])
 
+print(df.head())
 
-doc = db[doc["_id"]]
+df['uuid'] = df.apply(lambda _: uuid.uuid4().hex, axis=1)
 
-db.delete(doc)
+print(df.head())
 
-pd.read_csv("")
+df['json'] = df.apply(lambda x: x.to_json(), axis=1)
+
+test = df.at[0, 'json']
+print(test)
+
+db.save(test)
+
+columns = df.loc[1:10, 'json']
+
+for song in columns:
+    print(song)
+    try:
+        db.save(song)
+    except Exception as e:
+        print("Error" + str(e))
