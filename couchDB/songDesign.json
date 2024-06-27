@@ -1,0 +1,18 @@
+{
+  "_id": "_design/song",
+  "views": {
+    "by_artist": {
+      "map": "function(doc) { if (doc.Artist, doc.Song) { emit(doc.Artist, doc.Song); } }"
+    },
+    "by_album": {
+      "map": "function(doc) { if (doc.Album, doc.Song) { emit(doc.Album, doc.Song); } }"
+    },
+    "by_song": {
+      "map": "function(doc) { if (doc.Song && doc.Lyric) { emit(doc.Song, doc.Lyric); } }"
+    },
+    "by_song_full": {
+      "map": "function(doc) { if (doc.Song) { emit(doc.Song, doc); } }"
+    }
+  },
+  "_rev": "3-9453ecd3bca7d4ddfe30871479dafeb9"
+}

@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+    couchDB:
+        image: couchdb:3.3.3
+        ports:
+            - '5984:5984'
+        environment:
+            COUCHDB_USER: 'MDS'
+            COUCHDB_PASSWORD: 'supersecure'
+        volumes:
+            - db-data:/opt/couchdb/data
+            - config:/opt/couchdb/etc/local.d
+volumes:
+    db-data:
+    config:
