@@ -1,0 +1,22 @@
+name: 'mds'
+
+services:
+  postgres:
+    image: postgres:16.3@sha256:46aa2ee5d664b275f05d1a963b30fff60fb422b4b594d509765c42db46d48881
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: metal
+      POSTGRES_INITDB_ARGS: '--encoding=UTF-8 --lc-collate=C --lc-ctype=C'
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./Large_Metal_Lyrics_Archive_refined.csv:/var/lib/postgresql/csvs/Large_Metal_Lyrics_Archive_refined.csv
+      - postgres:/var/lib/postgresql/data
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+volumes:
+  postgres: {}
