@@ -96,4 +96,80 @@ CREATE TABLE SongThemes(
 );
 
 CREATE INDEX song_search_idx ON Song
-USING GIN (to_tsvector('english', coalesce(song, '') || '' || coalesce(album, '') || '' || coalesce(lyrics, '')));
+USING GIN(
+    (setweight(to_tsvector('english', coalesce(song ,'')), 'A') ||
+    setweight(to_tsvector('english', coalesce(album,'')), 'C') ||
+    setweight(to_tsvector('english', coalesce(lyrics,'')), 'D'))
+);
+
+CREATE TABLE fts(
+    artistId UUID NOT NULL,
+    artistName VARCHAR(2048),
+    songID UUID NOT NULL,
+    songName VARCHAR(2048),
+    album VARCHAR(2048),
+    lyrics TEXT
+);
+
+CREATE INDEX fts_idx ON fts
+USING GIN((setweight(to_tsvector('english', coalesce(songName,'')), 'A') ||
+           setweight(to_tsvector('english', coalesce(artistName, '')), 'B') ||
+           setweight(to_tsvector('english', coalesce(album,'')), 'C') ||
+           setweight(to_tsvector('english', coalesce(lyrics,'')), 'D')));
+
+INSERT INTO fts
+SELECT Artist.id, Artist.name, Song.id, Song.song, Song.album, Song.lyrics FROM Song
+    JOIN Artist ON Artist.id = Song.artist;
+
+CREATE FUNCTION update_fts() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    UPDATE fts
+    SET lyrics = new.lyrics
+    WHERE songId = new.id;
+    RETURN new;
+END;
+$BODY$
+    language plpgsql;
+
+CREATE FUNCTION insert_into_fts() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    INSERT INTO fts
+    SELECT artist.id, artist.Name, song.id, song.song, song.album, song.lyrics
+    FROM song
+             JOIN Artist on Song.artist = artist.id
+    WHERE song.id = new.id;
+    RETURN new;
+END;
+$BODY$
+    language plpgsql;
+
+CREATE FUNCTION delete_from_fts() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    DELETE FROM fts
+    WHERE songId = old.id;
+    RETURN OLD;
+END;
+$BODY$
+    language plpgsql;
+
+
+CREATE TRIGGER add_song_to_fts
+    AFTER INSERT ON Song
+    FOR EACH ROW
+    EXECUTE FUNCTION insert_into_fts();
+
+CREATE TRIGGER remove_song_from_fts
+    AFTER DELETE
+    ON Song
+    FOR EACH ROW
+EXECUTE FUNCTION delete_from_fts();
+
+
+CREATE TRIGGER update_lyrics_in_fts
+    AFTER UPDATE OF lyrics
+    ON Song
+    FOR EACH ROW
+EXECUTE FUNCTION update_fts();
