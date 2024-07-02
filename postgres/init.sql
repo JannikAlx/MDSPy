@@ -91,7 +91,6 @@ CREATE TABLE SongThemes(
     songId UUID REFERENCES Song (id),
     themeId UUID REFERENCES Themes (id),
     userRating INTEGER NOT NULL DEFAULT 0,
-    comment VARCHAR(512),
     PRIMARY KEY (songId, themeId)
 );
 

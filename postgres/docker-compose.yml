@@ -11,7 +11,7 @@ services:
       - "5432:5432"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./Large_Metal_Lyrics_Archive_refined.csv:/var/lib/postgresql/csvs/Large_Metal_Lyrics_Archive_refined.csv
+      - ../data/Large_Metal_Lyrics_Archive_refined.csv:/var/lib/postgresql/csvs/Large_Metal_Lyrics_Archive_refined.csv
       - postgres:/var/lib/postgresql/data
   adminer:
     image: adminer
