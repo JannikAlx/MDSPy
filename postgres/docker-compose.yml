@@ -10,8 +10,11 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./init_csv.sql:/docker-entrypoint-initdb.d/init.sql
       - ../data/Large_Metal_Lyrics_Archive_refined.csv:/var/lib/postgresql/csvs/Large_Metal_Lyrics_Archive_refined.csv
+      - ../data/countries.csv:/var/lib/postgresql/csvs/countries.csv
+      - ../data/themes.csv:/var/lib/postgresql/csvs/themes.csv
+      - ../data/export:/var/lib/postgresql/csvs/export
       - postgres:/var/lib/postgresql/data
   adminer:
     image: adminer
