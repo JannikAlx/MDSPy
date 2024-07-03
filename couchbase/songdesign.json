@@ -1,0 +1,24 @@
+{
+  "views": {
+    "by_artist": {
+      "map": "function(doc, meta){ if(doc.artist.name) emit(doc.artist.name, null); }"
+    },
+    "by_theme": {
+      "map": "function(doc, meta){ for(var i = 0; i < doc.themes.length; i++){ emit(doc.themes[i].name, null); } }"
+    },
+    "by_theme_and_rating": {
+      "map": "function(doc, meta){ for(var i = 0; i < doc.themes.length; i++){ emit([doc.themes[i].name, doc.themes[i].userRating], null); } }"
+    },
+    "by_country": {
+      "map": "function(doc, meta){if(doc.lyrics && doc.artist && doc.title){emit(doc.artist.country, {title: doc.title, lyrics: doc.lyrics.lyricText});}}"
+    },
+    "by_artist_album_count": {
+      "map": "function(doc, meta){ if(doc.artist.name && doc.album.releaseDate && doc.album.name) emit(doc.artist.name,[doc.album.name, doc.album.releaseDate]); }",
+      "reduce": "_count"
+    },
+    "by_album_song_count": {
+      "map": "function(doc, meta){ if(doc.album.releaseDate && doc.album.name) emit([doc.artist.name, doc.album.releaseDate], null); }",
+      "reduce": "_count"
+    }
+  }
+}

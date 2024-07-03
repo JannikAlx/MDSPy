@@ -1,0 +1,15 @@
+{
+  "views": {
+    "topThemeName": {
+      "map": "function(doc, meta){ if(doc.themes.length > 0 && doc.artist.name) var max = 0; for(var i = 1; i < doc.themes.length; i++){ if(doc.themes[i].userRating > max){ max = i; } } emit([doc.artist.name] ,doc.themes[max].name); }"
+    },
+    "topThemesCount": {
+      "map": "function(doc, meta){ if(doc.themes.length > 0 && doc.artist.name) var max = 0; for(var i = 1; i < doc.themes.length; i++){ if(doc.themes[i].userRating > max){ max = i; } } emit([doc.artist.name] ,doc.themes[max].name); }",
+      "reduce": "_count"
+    },
+    "topThemeCount": {
+      "map": "function(doc, meta) { if (doc.themes.length > 0 && doc.artist.name) var max = 0;  for (var i = 1; i < doc.themes.length; i++) {   if (doc.themes[i].userRating > max) { max = i; } } emit(doc.artist.name, doc.themes[max].name);}",
+      "reduce": "function(keys, values, rereduce) { var result = {}; for (var i = 0; i < keys.length; i++) { var key = values[i]; if (result[key]) { result[key] += 1; } else { result[key] = 1; } }  return result;}"
+    }
+  }
+}
