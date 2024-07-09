@@ -1,69 +1,36 @@
 {
-  "themes": [
-    {
-      "name": "Philosophy",
-      "userRating": 5
-    },
-    {
-      "name": "Ancient Civilizations",
-      "userRating": 4
-    },
-    {
-      "name": "Inner Demons",
-      "userRating": 4
-    }
-  ],
   "title": "The Joker",
   "artist": {
     "name": "QUIET RIOT",
     "country": "Kyrgyz Republic",
-    "biography": "Too rich food town pass institution PM probably.\nNewspaper step course should. Bed local serious test avoid.\nNice stage attention window space fly life.",
+    "biography": "Too rich food town pass institution ...",
     "formedIn": "2016",
     "id": "ba5e01411c2a4914b9415f97215a7b95",
     "status": "UNKNOWN"
   },
   "year": 1988,
-  "lyrics": {
-    "annotations": [
-      {
-        "characterEnd": 20,
-        "characterStart": 8,
-        "content": "Full stuff check. Rise natural believe performance. Increase business eye protect movie.\nEspecially we at look. Ball out let reality maybe class. Within per left hope.",
-        "userRating": 2
-      },
-      {
-        "characterEnd": 11,
-        "characterStart": 9,
-        "content": "Ball fish life.\nMean stand create mouth ask into mean. Agency yes dog main.\nThousand today election despite spend their nothing. Pay color leave. Choose move create no.",
-        "userRating": 1
-      },
-      {
-        "characterEnd": 13,
-        "characterStart": 9,
-        "content": "Shoulder parent buy military family lawyer hold. Mission deep pass social than. Simply door light body.\nRelationship brother attack yes. Approach drop produce leg.",
-        "userRating": 3
-      },
-      {
-        "characterEnd": 30,
-        "characterStart": 20,
-        "content": "Very cool section",
-        "userRating": 5
-      },
-      {
-        "characterEnd": 30,
-        "characterStart": 20,
-        "content": "No but its trash",
-        "userRating": 20
-      }
-    ],
-    "songId": "25ab75a2f5ff437baf0f2e7e79a7600c",
-    "lyricText": "Cut it\r\nHit me\r\n\r\nI am the joker in the pack\r\nFun to be around\r\nBring you luck, full of love\r\nWhen the chips are down\r\nIt ain't no use, now\r\nPlay the game\r\nMan, I'm not your king\r\nCause when there's a joker\r\nIn your hand\r\nThis card can't be beat, oh no\r\n\r\n(Ohohoh, I'm the joker)\r\nDon't you know I'm the coolest\r\n(Ohohoh, this joker's wild)\r\nAnd you know I'm fun\r\n(Ohohoh, I'm the joker)\r\nEverybody everywhere's talking about me\r\n(Ohohoh, this joker's wild)\r\n\r\nOh, 5 card stud in a loaded deck\r\nWith one card up my sleeve\r\nThat one-eyed jack is lookin' back\r\nThis joker takes his queen\r\nAces high, the deuce is down\r\nThe joker's having fun\r\nYou see, win or lose\r\nI'm the face card, dude\r\nI'm the talk of the town\r\nThat's right\r\n\r\n\r\n\r\nOh yeah\r\n\r\nHey the face card's cool\r\nThe king is mean\r\nAnd what do you know\r\nThat queen she's kind of sexy\r\nSo we'll play it right\r\nHit this hole in one\r\nYou and me in the back of the taxi\r\nOh oh\r\n\r\n(Ohohoh, I'm the joker)\r\nI'm so cool, ha ha\r\n\r\n\r\n\r\nThe joker's wild\r\n\r\nOh yeah\r\n(Ohohoh, I'm the joker)\r\nAh, don't you know I'm the coolest\r\n(Ohohoh, the joker's wild)\r\n(Ohohoh, the joker's wild)\r\nHey mmhmm\r\nG-g-g-g-get it\r\nG-g-g-g-get it down\r\nOh yeah, ow\r\nG-g-g-g-get it\r\nG-g-g-g-get it\r\nOh oh oh get it down\r\nG-g-g-g-get it\r\nG-g-g-g-get it down\r\n\r\nHa ha ha ha ha ha"
-  },
   "album": {
     "genre": "THRASH METAL",
     "name": "Quiet Riot",
     "id": "7466561d2b1f4e79b203447a6da726d5",
     "type": "LIVE",
     "releaseDate": 1988
+  },
+  "themes": [{
+      "name": "Inner Demons",
+      "userRating": 4
+    }],
+  "lyrics": {
+    "annotations": [{
+        "characterEnd": 30,
+        "characterStart": 20,
+        "content": "Very cool section",
+        "userRating": 5
+      }],
+    "songId": "25ab75a2f5ff437baf0f2e7e79a7600c",
+    "lyricText": "Cut it\r\nHit me\r\n\r\nI am the joker ..."
   }
 }
+
+
+

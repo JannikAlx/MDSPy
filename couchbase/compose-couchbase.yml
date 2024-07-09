@@ -1,6 +1,6 @@
 services:
     couchbase:
-        container_name: db
+        container_name: db1
         ports:
             - 8091-8097:8091-8097
             - 9123:9123
@@ -14,7 +14,28 @@ services:
             COUCHBASE_PASSWORD: 'supersecure'
         volumes:
             -   db-data:/opt/couchbase/var
+    couchbase2:
+        container_name: db2
+        ports:
+            - 8091-8097:8098-8094
+        image: couchbase:community-7.6.1
+        environment:
+            COUCHBASE_USER: 'MDS'
+            COUCHBASE_PASSWORD: 'supersecure'
+        volumes:
+            - db-data2:/opt/couchbase/var
+    couchbase3:
+        container_name: db3
+        ports:
+            - 8091-8097:8091-8097
+        image: couchbase:community-7.6.1
+        environment:
+            COUCHBASE_USER: 'MDS'
+            COUCHBASE_PASSWORD: 'supersecure'
+        volumes:
+            - db-data3:/opt/couchbase/var
 
 volumes:
     db-data:
-    config:
+    db-data2:
+    db-data3:

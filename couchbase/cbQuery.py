@@ -8,7 +8,7 @@ from couchbase.auth import PasswordAuthenticator
 from couchbase.cluster import Cluster
 # needed for options -- cluster, timeout, SQL++ (N1QL) query, etc.
 from couchbase.options import (ClusterOptions, ClusterTimeoutOptions,
-                               QueryOptions)
+                               QueryOptions, ViewOptions)
 
 username = "MDS"
 password = "supersecure"
@@ -41,4 +41,8 @@ def lookup_by_song_title(title):
         print(e)
 
 
-lookup_by_song_title("Hellfire")
+res = cb.view_query("songdesign", "by_album_song_count", ViewOptions(group=True))
+
+for row in res:
+    print(row)
+

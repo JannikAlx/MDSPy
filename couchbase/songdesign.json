@@ -16,8 +16,8 @@
       "map": "function(doc, meta){ if(doc.artist.name && doc.album.releaseDate && doc.album.name) emit(doc.artist.name,[doc.album.name, doc.album.releaseDate]); }",
       "reduce": "_count"
     },
-    "by_album_song_count": {
-      "map": "function(doc, meta){ if(doc.album.releaseDate && doc.album.name) emit([doc.artist.name, doc.album.releaseDate], null); }",
+    "by_album_count": {
+      "map": "function(doc, meta){ if(doc.album.releaseDate && doc.album.name) emit([doc.album.name], null); }",
       "reduce": "_count"
     }
   }

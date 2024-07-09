@@ -11,7 +11,7 @@ df = pd.read_parquet("../data/4/metalGenerated.parquet")
 
 print(df.head())
 print("Converting to JSON...")
-subset = df.loc[0:50000].apply(lambda x: x.to_json(), axis=1)
+subset = df.loc[0:100000].apply(lambda x: x.to_json(), axis=1)
 jsonDicts = []
 count = 0
 print("Loading Json...")
